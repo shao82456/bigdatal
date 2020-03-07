@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>bigdatal</artifactId>
+        <groupId>shao</groupId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>hadoopl</artifactId>
+    <version>1.0</version>
+
+    <repositories>
+        <repository>
+            <id>zyb-nexus</id>
+            <url>http://192.168.12.28:8089/repository/maven-public</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!--<dependency>
+            <groupId>com.homework.da</groupId>
+            <artifactId>bigdata-tools</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fire.spark.streaming</groupId>
+            <artifactId>fire-spark</artifactId>
+            <version>2.2.0_kafka-0.10_internal</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
