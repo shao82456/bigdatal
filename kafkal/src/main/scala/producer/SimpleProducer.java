@@ -50,6 +50,7 @@ public class SimpleProducer {
         Producer<String, String> producer = new KafkaProducer(props);
 
         while (true) {
+<<<<<<< Updated upstream:kafkal/src/main/scala/producer/SimpleProducer.java
             FileInputStream fin = new FileInputStream(data);
             byte[] bytes = new byte[1024 * 1024*9];
             fin.read(bytes);
@@ -62,6 +63,16 @@ public class SimpleProducer {
                             }
                         });
                 log.info("sent once");
+=======
+            String path = "/home/sakura/final/bigdatal/firesparkl/src/main/scala/sakura/test/kafka/data";
+            FileInputStream fin = new FileInputStream(path);
+            byte[] bytes = new byte[1024 * 1024*9];
+            fin.read(bytes);
+            String content = new String(bytes, StandardCharsets.UTF_8);
+            for(int i=0;i<5;i++){
+                producer.send(new ProducerRecord<>(topicName,
+                        UUID.randomUUID().toString(), content));
+>>>>>>> Stashed changes:firesparkl/src/main/scala/sakura/test/kafka/SimpleProducer.java
             }
             log.info("content length:{}",content.length());
             Thread.sleep(1000*3);
