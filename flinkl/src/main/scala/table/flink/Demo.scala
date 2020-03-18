@@ -35,7 +35,7 @@ object Demo {
   }
 
   def addKafkaSource(tEnv: StreamTableEnvironment):Unit={
-    val ddl=Source.fromFile("/Users/sakura/stuff/flinkl/src/main/scala/table/flink/KafkaSource.ddl").mkString
+    val ddl=Source.fromFile("/Users/sakura/stuff/bigdatal/flinkl/src/main/scala/table/flink/KafkaSource.ddl").mkString
     tEnv.sqlUpdate(ddl)
   }
 
@@ -58,7 +58,7 @@ object Demo {
          |  `last_name` VARCHAR
          |) WITH (
          |  'connector.type' = 'filesystem',
-         |  'connector.path' = 'file:///Users/sakura/stuff/flinkl/src/main/scala/table/flink/res',
+         |  'connector.path' = 'file:///Users/sakura/stuff/bigdatal/flinkl/src/main/scala/table/flink/res',
          |  'format.type'='csv',
          |  'update-mode' = 'append',
          |  'format.fields.0.name' = 'actor_id',
@@ -81,13 +81,13 @@ object Demo {
 
     addKafkaSource(tEnv)
     addSink(tEnv)
-    createTemporalTable(Source.fromFile("/Users/sakura/stuff/flinkl/src/main/scala/table/flink/TemporalTable.ddl").mkString, tEnv)
+    createTemporalTable(Source.fromFile("/Users/sakura/stuff/bigdatal/flinkl/src/main/scala/table/flink/TemporalTable.ddl").mkString, tEnv)
 
     tEnv.sqlUpdate(
       s"""
          |insert into actor2
          |select a.actor_id,a.first_name,r.film_info
-         |from actor  AS a
+         |from (select *,PROCTIME() as proctime from actor)  AS a
          |JOIN actor_info FOR SYSTEM_TIME AS OF a.proctime AS r
          |ON r.actor_id = a.actor_id
          |""".stripMargin)

@@ -1,0 +1,2 @@
+1. 模版方法模式
+org.apache.kafka.clients.consumer.internals.AbstractCoordinator.CoordinatorResponseHandler
