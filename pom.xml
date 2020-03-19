@@ -30,15 +30,9 @@
     <modules>
         <module>hadoopl</module>
         <module>flinkl</module>
-<<<<<<< Updated upstream
-<!--        <module>firesparkl</module>-->
         <module>sparkl</module>
         <module>kafkal</module>
-=======
-        <module>firesparkl</module>
-        <module>fire-spark</module>
         <module>prometheusl</module>
->>>>>>> Stashed changes
     </modules>
 
     <dependencies>
