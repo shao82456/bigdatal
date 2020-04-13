@@ -92,9 +92,9 @@ public class DemoServer {
 
     //让prometheus通过pull拉数据
     void monitorStart(){
-        DefaultExports.initialize();
+//        DefaultExports.initialize();
         try {
-            HTTPServer server = new HTTPServer(10001);
+            HTTPServer server = new HTTPServer(12345);
 //            InetSocketAddress address = new InetSocketAddress("192.168.1.222", 9201);
         } catch (IOException e) {
             e.printStackTrace();

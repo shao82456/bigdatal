@@ -1,0 +1,38 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------------< shao:kafkal >-----------------------------
+[INFO] Building kafkal 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ kafkal ---
+[INFO] shao:kafkal:jar:1.0
+[INFO] +- org.apache.kafka:kafka_2.11:jar:0.10.0.1:compile
+[INFO] |  +- com.101tec:zkclient:jar:0.8:compile
+[INFO] |  |  +- org.slf4j:slf4j-api:jar:1.6.1:compile
+[INFO] |  |  \- log4j:log4j:jar:1.2.15:compile
+[INFO] |  |     \- javax.mail:mail:jar:1.4:compile
+[INFO] |  |        \- javax.activation:activation:jar:1.1:compile
+[INFO] |  +- org.slf4j:slf4j-log4j12:jar:1.7.21:compile
+[INFO] |  +- com.yammer.metrics:metrics-core:jar:2.2.0:compile
+[INFO] |  +- org.scala-lang:scala-library:jar:2.11.8:compile
+[INFO] |  +- org.scala-lang.modules:scala-parser-combinators_2.11:jar:1.0.4:compile
+[INFO] |  +- net.sf.jopt-simple:jopt-simple:jar:4.9:compile
+[INFO] |  +- org.apache.zookeeper:zookeeper:jar:3.4.6:compile
+[INFO] |  |  +- jline:jline:jar:0.9.94:compile
+[INFO] |  |  \- io.netty:netty:jar:3.7.0.Final:compile
+[INFO] |  \- org.apache.kafka:kafka-clients:jar:0.10.0.1:compile
+[INFO] |     +- net.jpountz.lz4:lz4:jar:1.3.0:compile
+[INFO] |     \- org.xerial.snappy:snappy-java:jar:1.1.2.6:compile
+[INFO] +- junit:junit:jar:4.11:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] \- org.scalatest:scalatest-funsuite_2.11:jar:3.0.0-SNAP13:test
+[INFO]    +- org.scalatest:scalatest-core_2.11:jar:3.0.0-SNAP13:test
+[INFO]    |  +- org.scalactic:scalactic_2.11:jar:3.0.0-SNAP13:test
+[INFO]    |  \- org.scala-lang.modules:scala-xml_2.11:jar:1.0.2:test
+[INFO]    \- org.scala-lang:scala-reflect:jar:2.11.7:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.064 s
+[INFO] Finished at: 2020-04-02T15:03:45+08:00
+[INFO] ------------------------------------------------------------------------
