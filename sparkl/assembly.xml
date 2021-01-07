@@ -1,0 +1,28 @@
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+            <!--打包所有直接依赖,包括项目自身-->
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>deploy</directory>
+            <outputDirectory/>
+        </fileSet>
+    </fileSets>
+    <files>
+        <file>
+            <source>run.sh</source>
+            <outputDirectory/>
+        </file>
+        <file>
+            <source>src/main/resources/log4j.properties</source>
+            <outputDirectory/>
+        </file>
+    </files>
+</assembly>

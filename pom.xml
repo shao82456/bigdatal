@@ -8,7 +8,7 @@
     <artifactId>bigdatal</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <!-- FIXME change it to the project's website -->
+    <!-- FIXME change it tMetricsSystemo the project's website -->
     <url>http://www.example.com</url>
 
     <properties>
@@ -19,7 +19,7 @@
         <java.version>1.8</java.version>
 
         <spark.version>2.2.0</spark.version>
-        <hadoop.version>2.7.3</hadoop.version>
+        <hadoop.version>2.6.5</hadoop.version>
         <flink.version>1.9.0</flink.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -48,18 +48,23 @@
             <version>3.0.0-SNAP13</version>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.26</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-reflect</artifactId>
-            <version>${scala.version}</version>
-            <scope>runtime</scope>
-        </dependency>-->
+            <groupId>org.json4s</groupId>
+            <artifactId>json4s-jackson_2.11</artifactId>
+            <version>3.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>io.spray</groupId>
+            <artifactId>spray-json_2.11</artifactId>
+            <version>1.3.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>

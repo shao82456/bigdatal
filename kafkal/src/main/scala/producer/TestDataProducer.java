@@ -16,7 +16,7 @@ public class TestDataProducer {
     private static Logger log = LoggerFactory.getLogger(TestDataProducer.class);
     private static String topic = "test";
     private static String bootstrapServer = "localhost:9092";
-    private static int batchSize = 10;
+    private static int batchSize = 500;
     private static int batchInterval = 3;
 
     public static void main(String[] args) throws Exception {
@@ -39,6 +39,7 @@ public class TestDataProducer {
         Scanner scanner = new Scanner(data);
         String line = scanner.nextLine();
         while (true) {
+            long st=System.currentTimeMillis();
             for (int i = 0; i < batchSize; i++) {
                 producer.send(new ProducerRecord<>(topic,
                         UUID.randomUUID().toString(), line), (metadata, exception) -> {
@@ -47,6 +48,7 @@ public class TestDataProducer {
                     }
                 });
             }
+            System.out.println(System.currentTimeMillis()-st);
             log.info("sent batch of {} records", batchSize);
             Thread.sleep(1000 * batchInterval);
         }

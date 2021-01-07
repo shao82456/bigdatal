@@ -8,6 +8,7 @@ package shao.dropwizard;
  */
 
 import com.codahale.metrics.Gauge;
+import com.codahale.metrics.Histogram;
 import com.codahale.metrics.MetricRegistry;
 import io.prometheus.client.Collector;
 import io.prometheus.client.dropwizard.DropwizardExports;
@@ -15,11 +16,15 @@ import io.prometheus.client.exporter.HTTPServer;
 import io.prometheus.client.exporter.PushGateway;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GetStarted {
     static final MetricRegistry metrics = new MetricRegistry();
     static Collector collector = new DropwizardExports(metrics);
+    static PushGateway pg = new PushGateway("localhost:9091");
 
     static {
         collector.register();
@@ -27,21 +32,27 @@ public class GetStarted {
 
     static AtomicInteger id = new AtomicInteger();
 
-    public static void main(String args[]) {
-//        startReport();
-        Gauge requests = metrics.register("currentId", new Gauge<Integer>() {
+    public static void main(String[] args) throws InterruptedException {
+        Histogram h = metrics.histogram("abc");
+        ExecutorService es = Executors.newCachedThreadPool();
+        es.execute(() -> {
+            startReport();
+            while (true) {
+//                push();
+                h.update(System.currentTimeMillis()%100);
+                wait5Seconds();
+            }
+        });
+
+        Gauge<Integer> requests = metrics.register("currentId", new Gauge<Integer>() {
             @Override
             public Integer getValue() {
                 return id.incrementAndGet();
             }
         });
-        while (true){
-            startPushGateWay();
-            wait5Seconds();
-        }
 
 
-//        metrics.meter("requests").mark();
+        es.awaitTermination(1, TimeUnit.MINUTES);
     }
 
     static void startReport() {
@@ -57,10 +68,9 @@ public class GetStarted {
         reporter.start(1, TimeUnit.SECONDS);*/
     }
 
-    static void startPushGateWay() {
-        PushGateway pg = new PushGateway("localhost:9091");
+    static void push() {
         try {
-            pg.pushAdd(collector,"testPG");
+            pg.pushAdd(collector, "testPG");
         } catch (IOException e) {
             e.printStackTrace();
         }

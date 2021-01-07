@@ -1,0 +1,78 @@
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+            <!--打包所有直接依赖,包括项目自身-->
+            <outputDirectory>lib</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact> <!--默认true,可以不写-->
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+            <excludes>
+                <exclude>org.apache.spark*:*</exclude>
+                <exclude>org.apache.hive*:*</exclude>
+                <exclude>org.apache.hadoop*:*</exclude>
+                <exclude>org.elasticsearch:elasticsearch-spark_2.11:*</exclude>
+                <exclude>io.prometheus:*</exclude>
+                <exclude>org.apache.hbase:*</exclude>
+            </excludes>
+        </dependencySet>
+        <dependencySet>
+            <!--打包额外运行时依赖-->
+            <outputDirectory>lib</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact> <!--默认true,可以不写-->
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+            <includes>
+                <include>*:*slf4j*</include>
+                <include>*:*log4j*</include>
+                <!--                <include>org.json4s:*</include>-->
+                <!--                <include>com.fasterxml.jackson*:*</include>-->
+            </includes>
+        </dependencySet>
+        <!--        <dependencySet>
+                    &lt;!&ndash;打包运行环境需要依赖的jar包,包含传递依赖&ndash;&gt;
+                    <outputDirectory>lib</outputDirectory>
+                    <includes>
+                        <include>org.fire.spark.streaming:fire-spark</include>
+                        <include>com.homework.da:spark-tools</include>
+                        <include>com.homework.da:bigdata-tools</include>
+                    </includes>
+                    <excludes>
+                        <exclude>org.apache.spark*:*</exclude>
+                        <exclude>org.apache.hive*:*</exclude>
+                        <exclude>org.apache.hadoop*:*</exclude>
+                    </excludes>
+                    <useTransitiveDependencies>true</useTransitiveDependencies> &lt;!&ndash;默认true,可以不写&ndash;&gt;
+                    <useTransitiveFiltering>true</useTransitiveFiltering>
+                </dependencySet>-->
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>README.md</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>deploy</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>azkaban</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+    <files>
+        <file>
+            <source>run.sh</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>src/main/resources/log4j.properties</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+    </files>
+</assembly>

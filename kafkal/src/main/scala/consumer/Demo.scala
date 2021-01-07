@@ -24,41 +24,25 @@ object Demo {
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("max.partition.fetch.bytes", "1048576")
-    props.put("max.poll.records", "10")
-
+    props.put("max.poll.records", "100")
     props
   }
 
   def main(args: Array[String]): Unit = {
-    val topic = "testOOM"
-    val group = "test.t9"
+    val topic = "test_input"
+    val group = "tst.t1"
     val props = initProp(group)
     val consumer: KafkaConsumer[String, String] = new KafkaConsumer[String, String](props)
-//    val p2 = props.clone().asInstanceOf[Properties]
+
+    //    val p2 = props.clone().asInstanceOf[Properties]
     //    val consumer2: KafkaConsumer[String, String] = new KafkaConsumer[String, String](p2)
 
     consumer.subscribe(util.Arrays.asList(topic))
-    System.out.println("Subscribed to topic " + topic)
-
-    val records1 = consumer.poll(5000)
-//    val records2 = consumer.poll(5000)
-//    val records3 = consumer.poll(5000)
-
-    val records = records1.asScala
-//    ++records2.asScala
-//    ++records3.asScala
-//    ++ records2.asScala
-    println(records.size)
-//    val tps = consumer.assignment()
-//    val m1 = tps.asScala.map(tp => {
-//      tp -> consumer.position(tp)
-//    }).toMap
-//    Thread.sleep(1000*3)
-//    consumer.seekToEnd(tps)
-//    val m2 = tps.asScala.map(tp => {
-//        tp -> consumer.position(tp)
-//    }).toMap
-//    println(m1)
-//    println(m2)
+    while(true){
+      val records1 = consumer.poll(300)
+      records1.asScala.foreach(record=>println(record.value()))
+      Thread.sleep(1000*30)
+//      println("once")
+    }
   }
 }

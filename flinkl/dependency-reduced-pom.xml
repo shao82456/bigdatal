@@ -31,11 +31,6 @@
                   </excludes>
                 </filter>
               </filters>
-              <transformers>
-                <transformer>
-                  <mainClass>demo.SocketWindowWC</mainClass>
-                </transformer>
-              </transformers>
             </configuration>
           </execution>
         </executions>

@@ -83,20 +83,20 @@ object Demo {
     addSink(tEnv)
     createTemporalTable(Source.fromFile("/Users/sakura/stuff/bigdatal/flinkl/src/main/scala/table/flink/TemporalTable.ddl").mkString, tEnv)
 
-    tEnv.sqlUpdate(
+    /*tEnv.sqlUpdate(
       s"""
          |insert into actor2
          |select a.actor_id,a.first_name,r.film_info
          |from (select *,PROCTIME() as proctime from actor)  AS a
          |JOIN actor_info FOR SYSTEM_TIME AS OF a.proctime AS r
          |ON r.actor_id = a.actor_id
-         |""".stripMargin)
+         |""".stripMargin)*/
 
-    /*tEnv.sqlUpdate(
+    tEnv.sqlUpdate(
       s"""
          |INSERT into actor2
          |select * from actor
-         |""".stripMargin)*/
+         |""".stripMargin)
     fsEnv.execute()
   }
 }

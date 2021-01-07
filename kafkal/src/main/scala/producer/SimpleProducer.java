@@ -50,6 +50,7 @@ public class SimpleProducer {
         props.put("value.serializer",
                 "org.apache.kafka.common.serialization.StringSerializer");
         Producer<String, String> producer = new KafkaProducer(props);
+        Producer<String, String> producer2 = new KafkaProducer(props);
         FileInputStream fin = new FileInputStream(data);
         int c=0;
         while (true) {

@@ -33,6 +33,7 @@ public class DemoServer {
     /*累计请求监控*/
     static final Counter total_requests = Counter.build()
             .name("requests_total").help("Total requests.").register();
+//            .register();
     /*处理中请求监控*/
     static final Gauge inprogressRequests = Gauge.build()
             .name("inprogress_requests").help("Inprogress requests.").register();

@@ -1,7 +1,10 @@
 package table
 
+import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.scala._
+import org.apache.flink.table.api.Types
 import org.apache.flink.table.api.scala._
+import org.apache.flink.table.functions.ScalarFunction
 
 /**
  * Author: shaoff
@@ -10,6 +13,28 @@ import org.apache.flink.table.api.scala._
  * Description:
  *
  */
+
+// must be defined in static/object context
+class HashCode(factor: Int) extends ScalarFunction {
+  def eval(s: String): Int = {
+    s.hashCode() * factor
+  }
+}
+
+
+
+object TimestampModifier extends ScalarFunction {
+  def eval(t: Long): Long = {
+    t % 1000
+  }
+
+  override def getResultType(signature: Array[Class[_]]): TypeInformation[_] = {
+    Types.SQL_DATE()
+  }
+}
+
+
+
 object WordCountTable {
   def main(args: Array[String]): Unit = {
     val env=ExecutionEnvironment.getExecutionEnvironment

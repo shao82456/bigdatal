@@ -1,8 +1,1 @@
-fjsalf
-gfjdlkg
-jgfkldg
-jklfdg
-jgklfdg
-jgklfdg
-jgklfdg
-jglfd
+{"header":{"key":"trace_test_input:ab2b2da0-d8a9-431b-ae1e-e03fd48c47b3","timestamp":1587361120,"tag":"realtime","protversion":"0.1","dataversion":"0.1","traceid":"","datatype":"trace_test_input","extra":{}},"body":{"id":"trace_test_input:ab2b2da0-d8a9-431b-ae1e-e03fd48c47b3","data":"\"\"ggf\"\"","key1":"v1","key2":"","key3":"","key4":"","key5":"","ts":1587361120330,"datatype":"trace_test_input"}}

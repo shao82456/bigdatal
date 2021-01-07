@@ -1,0 +1,26 @@
+@startuml
+interface Sink{
+    start()
+    stop()
+    report()
+}
+
+Source -[hidden] Sink
+Sink <|-- CsvSink
+Sink <|-- MetricsServlet
+Sink <|-- GraphiteSink
+Sink <|-- Sl4jSink
+
+interface Source{
+    MetricRegistry metricRegistry
+    String sourceName
+}
+Source <|-- ApplicationSource
+Source <|-- WorkerSource
+Source <|-- ExecutorSource
+Source <|-- JvmSource
+
+'class MetricSystem{
+'    MetricRegistry metricRegistry
+'}
+@enduml

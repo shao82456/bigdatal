@@ -1,0 +1,19 @@
+@startuml
+participant Executor
+Executor -> SparkEnv: createExecutorEnv
+activate SparkEnv
+SparkEnv -> MetricsSystem: createMetricsSystem
+activate MetricsSystem
+SparkEnv <-- MetricsSystem: metricSystem
+SparkEnv -> MetricsSystem: start
+MetricsSystem -> MetricsSystem: registerSources
+MetricsSystem -> MetricsSystem: registerSinks
+MetricsSystem -> MetricsSystem: sinks.foreach(_.start)
+
+SparkEnv <-- MetricsSystem:
+'SparkEnv <-- MetricsSystem:
+Executor <-- SparkEnv: sparkEnv
+
+deactivate MetricsSystem
+deactivate SparkEnv
+@enduml

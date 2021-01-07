@@ -1,0 +1,14 @@
+@startuml
+
+interface StreamingListener{
+void onStreamingStarted()
+void onBatchSubmitted()
+void onBatchStarted()
+void onBatchCompleted()
+}
+StreamingListener <|-- AbnormalMonitor
+StreamingListener <|-- CongestionMonitor
+AbnormalMonitor "1" *-- "1" CongestionMonitor :contains
+StreamingListener <|-- NumRecordMonitor
+StreamingListener <|-- ConsumeRateMonitor
+@enduml
